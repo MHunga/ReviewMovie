@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_margin="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="8dp"
+       >
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               >
+
+                <ImageView
+                    android:id="@+id/imgItemMovie"
+                    android:layout_width="140dp"
+                    android:layout_height="180dp"
+                    android:layout_margin="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/txtMovieName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:text="Tên sản phẩm"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgItemMovie"
+                    app:layout_constraintVertical_bias="0.06999999" />
+
+                <com.timqi.sectorprogressview.ColorfulRingProgressView
+                    android:id="@+id/crpv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    app:bgColor="#e1e1e1"
+                    app:fgColorEnd="#134CA3"
+                    app:fgColorStart="#06A4B9"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/release_date"
+                    app:layout_constraintHorizontal_bias="0.068"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtMovieName"
+                    app:percent="75"
+                    app:startAngle="0"
+                    app:strokeWidth="5dp" />
+
+                <TextView
+                    android:id="@+id/txtPercent"
+                    android:layout_width="10sp"
+                    android:layout_height="10sp"
+                    android:gravity="center"
+                    android:text="75"
+                    android:textSize="7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/crpv"
+                    app:layout_constraintEnd_toEndOf="@+id/crpv"
+                    app:layout_constraintStart_toStartOf="@+id/crpv"
+                    app:layout_constraintTop_toTopOf="@+id/crpv"
+                    />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="6dp"
+                    android:layout_height="7dp"
+                    android:gravity="center"
+                    android:text="%"
+                    android:textSize="6sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/crpv"
+                    app:layout_constraintTop_toTopOf="@+id/crpv" />
+
+                <TextView
+                    android:id="@+id/release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="20/7/1999"
+                    android:textSize="9sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/crpv"
+                    app:layout_constraintVertical_bias="0.058" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="#5F5D5D"
+                    app:layout_constraintBottom_toTopOf="@+id/crpv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="24dp"
+                    android:layout_height="16dp"
+                    android:gravity="center"
+                    android:text="User Score"
+                    android:textSize="7sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/crpv"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

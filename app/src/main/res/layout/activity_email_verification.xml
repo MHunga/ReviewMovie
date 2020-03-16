@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmailVerificationActivity">
+
+    <TextView
+        android:id="@+id/tTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="EMAIL VERIFICATION"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tSecond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tTop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:text="Chúng tôi đã gửi cho bạn một liên kết để xác minh. Hãy kiểm tra hộp thư đến của bạn"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tTop" />
+
+    <LinearLayout
+        android:id="@+id/buttonVerified"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+
+        android:layout_centerVertical="true"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/verification_button"
+        android:clickable="true"
+        android:focusable="true"
+
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:onClick="OnVerified_Click"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tSecond">
+
+        <TextView
+            android:id="@+id/textPurchaseFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tôi đã xác minh"
+            android:textColor="#444"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textResendEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonVerified"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/verification_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="OnResendEmail_Click"
+        android:paddingLeft="16dp"
+        android:paddingTop="9dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="9dp"
+        android:text="Gửi lại email xác nhận"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonVerified" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

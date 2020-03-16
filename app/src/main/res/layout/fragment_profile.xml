@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="vn.itplus.reviewmovie.fragment.ProfileFragment"
+    android:background="@color/background_app"
+    >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="213dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/imgUser"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/profile"
+                    android:paddingTop="8dp"
+                    android:scaleType="centerInside"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.173" />
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/addPic"
+                    android:clickable="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add_red_24dp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtUserName"
+                    app:layout_constraintEnd_toEndOf="@+id/imgUser"
+                    app:layout_constraintTop_toTopOf="@+id/imgUser"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="Name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgUser" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/btnSeen"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="     Đã xem gần đây"
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                android:drawableLeft="@drawable/ic_remove_red_eye_black_24dp"
+                />
+
+            <Button
+                android:id="@+id/btnLiked"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="     Phim đã thích"
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                android:drawableLeft="@drawable/like"
+                />
+            <Button
+                android:id="@+id/btnLocation"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="     Địa chỉ"
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                />
+            <Button
+                android:id="@+id/btnHotLine"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="    Hot Line: 1800 - 0000 (100k/p) "
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                />
+            <Button
+                android:id="@+id/btnInfo"
+                android:layout_marginTop="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="    Giới thiệu"
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                />
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_buton"
+                android:text="Đăng xuất"
+                android:textAllCaps="false"
+                android:gravity="center"
+                />
+
+
+
+
+</LinearLayout>

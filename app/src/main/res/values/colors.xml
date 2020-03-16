@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="failLogin">#FC1212</color>
+
+    <color name="progressDialogPositiveTextColor">#5b5b5b</color>
+
+    <color name="bgBottomNavigation">#17A0C2</color>
+
+    <color name="placeholder_bg">#dddddd</color>
+    <color name="item_name">#0c0c0c</color>
+    <color name="description">#1a1a1a</color>
+    <color name="chef">#777</color>
+    <color name="timestamp">#777</color>
+    <color name="background_app">#0C133A</color>
+    <color name="enable_button_change_page">#B0FDC0</color>
+    <color name="disable_button_change_page">#859489</color>
+    <color name="xxx">#94AD98</color>
+</resources>
