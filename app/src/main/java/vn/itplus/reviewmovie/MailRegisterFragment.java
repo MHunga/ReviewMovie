@@ -36,7 +36,7 @@ import vn.itplus.reviewmovie.utils.Utils;
 
 public class MailRegisterFragment extends Fragment {
 
-    private static final String TAG = "TAG";
+    private static final String TAG = "TAGGGGG";
     EditText txtRegisterName, txtRegisterEmail, txtRegisterPassword, txtRePassword;
     ImageView editShowRegisterHidePassword, editShowRegisterHideRePassword;
     CheckBox checkBox;
@@ -141,6 +141,7 @@ public class MailRegisterFragment extends Fragment {
                                             Intent intent = new Intent(getActivity().getBaseContext(), EmailVerificationActivity.class);
                                             intent.putExtra("email", email);
                                             intent.putExtra("password", password);
+                                            intent.putExtra("name", name);
                                             getActivity().startActivity(intent);
                                         } else {
                                             unShowAlertDialog();

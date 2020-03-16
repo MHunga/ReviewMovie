@@ -155,10 +155,8 @@ public class PhoneRegisterFragment extends Fragment {
                         unShowAlertDialog();
                         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         String UID = firebaseUser.getUid();
-                        User user = new User();
+                        User user = new User(UID,"","",txtPhonePassword.getText().toString(),"","",txtPhoneNumner.getText().toString(),"");
                         UserID userID = new UserID();
-                        user.setPhoneNumber(txtPhoneNumner.getText().toString());
-                        user.setPassword(txtPhonePassword.getText().toString());
                         user.setId(UID);
                         userID.setId(UID);
 

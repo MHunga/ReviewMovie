@@ -286,6 +286,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Utils.UnSetProgressDialogIndeterminate();
+                            User user = new User(firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getEmail(),"","","","",firebaseAuth.getCurrentUser().getPhotoUrl().toString());
+                            FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                             finish();
                         }
@@ -468,10 +470,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Log.d(TAG,"Success");
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    if (user != null){
+                    if (firebaseAuth.getCurrentUser() != null){
+                        User user = new User(firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getEmail(),"","","","",firebaseAuth.getCurrentUser().getPhotoUrl().toString());
+                        FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
+
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                        updateUI(user) ;
+
                     }
 
                 }else {
