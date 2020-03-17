@@ -30,4 +30,7 @@
     <string name="dialog_permission_message">Ứng dụng này cần sự cho phép để sử dụng tính năng này. Bạn có thể cấp chúng trong cài đặt ứng dụng.</string>
     <string name="go_to_settings">ĐI TỚI CÀI ĐẶT</string>
     <string name="lbl_choose_from_gallery">Chon từ thư viện</string>
+    <string name="new_name">New name</string>
+    <string name="exit">Thoát</string>
+    <string name="change">Thay đổi</string>
 </resources>

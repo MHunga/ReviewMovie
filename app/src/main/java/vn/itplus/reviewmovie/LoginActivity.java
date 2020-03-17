@@ -82,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
     DatabaseReference  mDatabase;
    public static ArrayList<String> idHotMovies;
+   String gName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,7 +287,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Utils.UnSetProgressDialogIndeterminate();
-                            User user = new User(firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getEmail(),"","","","",firebaseAuth.getCurrentUser().getPhotoUrl().toString());
+                            User user = new User(firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getDisplayName()
+                                    ,firebaseAuth.getCurrentUser().getEmail()
+                                    ,"","","",""
+                                    ,firebaseAuth.getCurrentUser().getPhotoUrl().toString()+ "?type=large");
                             FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                             finish();
@@ -471,7 +475,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Log.d(TAG,"Success");
                     if (firebaseAuth.getCurrentUser() != null){
-                        User user = new User(firebaseAuth.getCurrentUser().getUid(),firebaseAuth.getCurrentUser().getDisplayName(),firebaseAuth.getCurrentUser().getEmail(),"","","","",firebaseAuth.getCurrentUser().getPhotoUrl().toString());
+
+                        if (firebaseAuth.getCurrentUser().getDisplayName()==null){
+                            gName = "No name";
+                        }
+                        else {
+                            gName = firebaseAuth.getCurrentUser().getDisplayName();
+                        }
+                        User user = new User(firebaseAuth.getCurrentUser().getUid(),gName,firebaseAuth.getCurrentUser().getEmail(),"","","","","no photo");
                         FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid()).setValue(user);
 
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));

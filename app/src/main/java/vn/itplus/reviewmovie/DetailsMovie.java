@@ -50,6 +50,7 @@ import vn.itplus.reviewmovie.model.cast.Casts;
 import vn.itplus.reviewmovie.model.comment.Comment;
 import vn.itplus.reviewmovie.model.movie.details.Movie;
 import vn.itplus.reviewmovie.model.movie.translation.Translation;
+import vn.itplus.reviewmovie.model.user.User;
 import vn.itplus.reviewmovie.model.video.Video;
 import vn.itplus.reviewmovie.retrofit2.MService;
 import vn.itplus.reviewmovie.retrofit2.RetrofitClient;
@@ -76,6 +77,9 @@ public class DetailsMovie extends YouTubeBaseActivity {
         CommentAdapter commentAdapter;
         ArrayList<Comment> comments;
     DatabaseReference mDatabase;
+    FirebaseUser firebaseUser;
+    User user;
+    String userName,photoUrl,UID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,20 +88,46 @@ public class DetailsMovie extends YouTubeBaseActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.ALPHA_CHANGED,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.details_movie);
+
         Intent intent = getIntent();
        id = intent.getStringExtra("id");
        title = intent.getStringExtra("title");
         overview = intent.getStringExtra("overview");
         Log.d("ID", id);
         addControls();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         getDetails(id);
         getComments(id);
+        getInfomationUser();
         addEvents();
 
     }
 
+    private void getInfomationUser() {
+        UID = firebaseUser.getUid();
+mDatabase.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        for (DataSnapshot ds : dataSnapshot.child("User").getChildren()){
+            user = ds.getValue(User.class);
+            if (user.getId().equalsIgnoreCase(UID)){
+                userName = user.getName();
+                photoUrl = user.getPhotoURL();
+
+                break;}
+        }
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+});
+    }
+
     private void getComments(String idMovie) {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -151,6 +181,7 @@ public void setRecyclerCast(ArrayList<Cast> cast){
     recyclerCast.setItemAnimator(new DefaultItemAnimator());
     recyclerCast.setAdapter(castAdapter);
     }
+
 
     private void getDetails( String id) {
 
@@ -270,16 +301,12 @@ call3.enqueue(new Callback<Casts>() {
                 if (!txtYourComment.getText().toString().isEmpty()){
                     Date date = Calendar.getInstance().getTime();
                   String timestamp = Utils.DateToString(date);
-                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                String UID = firebaseUser.getUid();
-                String name = firebaseUser.getDisplayName();
-                String urlPhoto = String.valueOf(firebaseUser.getPhotoUrl());
                 Comment comment = new Comment();
                 comment.setIdUser(UID);
                 comment.setIdMovie(id);
                 comment.setDescription(txtYourComment.getText().toString());
-                comment.setName(name);
-                comment.setUrlPhoto(urlPhoto);
+                comment.setName(userName);
+                comment.setUrlPhoto(photoUrl);
                 comment.setTimestamp(timestamp);
 
                 FirebaseDatabase.getInstance().getReference().child("getcomment").child(id).child("Comment").push().setValue(comment);
@@ -316,6 +343,7 @@ call3.enqueue(new Callback<Casts>() {
         video = new Video();
         movie = new Movie();
         comments = new ArrayList<>();
+        user = new User();
 
 
     }

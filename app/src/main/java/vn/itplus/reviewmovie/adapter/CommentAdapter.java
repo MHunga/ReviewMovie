@@ -42,7 +42,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public void onBindViewHolder(@NonNull CommentAdapter.ViewHolder holder, int position) {
        // Picasso.get().load(comments.get(position).getUrlPhoto() + "?type=large").into(holder.thumbnail);
       try {
-          Glide.with(context).load(comments.get(position).getUrlPhoto() + "?type=large").into(holder.thumbnail);
+          if (comments.get(position).getUrlPhoto().equalsIgnoreCase("no photo")){
+              Glide.with(context).load(R.drawable.profile)
+                      .into(holder.thumbnail);
+          }else {
+              Glide.with(context).load(comments.get(position).getUrlPhoto()).into(holder.thumbnail);
+
+          }
           holder.name.setText(comments.get(position).getName());
           Date date = Utils.StringToDate(comments.get(position).getTimestamp());
           String timestamp = Utils.getTimeStampComment(date);

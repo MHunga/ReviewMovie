@@ -2,28 +2,50 @@ package vn.itplus.reviewmovie.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -36,14 +58,24 @@ import java.util.List;
 
 import vn.itplus.reviewmovie.LoginActivity;
 import vn.itplus.reviewmovie.R;
+import vn.itplus.reviewmovie.model.comment.Comment;
+import vn.itplus.reviewmovie.model.user.User;
 import vn.itplus.reviewmovie.utils.ImagePickerActivity;
+import vn.itplus.reviewmovie.utils.Utils;
 
 public class ProfileFragment extends Fragment {
 
     CircularImageView imgUser,addPic;
-    TextView txtUserName;
-    Button btnSeen,btnLiked,btnLocation,btnHotLine,btnInfo,btnLogout;
+    ImageButton imgEditName;
+    TextView txtUserName,txtOldName;
+    EditText txtNewName;
+    Button btnSeen,btnLiked,btnLocation,btnHotLine,btnInfo,btnLogout, btnExitDiaLog, btnChangeName ;
 
+   static User user;
+    DatabaseReference databaseReference;
+    FirebaseUser firebaseUser;
+    StorageReference storageReference;
+    String UID;
     private static final String TAG = ProfileFragment.class.getSimpleName();
     public static final int REQUEST_IMAGE = 100;
 
@@ -57,11 +89,14 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile,null);
         addControls(view);
-       // getProfile();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        storageReference = FirebaseStorage.getInstance().getReference("PhotoUser");
+        getProfile();
         addEvents();
 
 
-        loadProfileDefault();
+       // loadProfileDefault();
         return view;
     }
     private void loadProfile(String url) {
@@ -77,16 +112,55 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getProfile() {
-        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+    UID = firebaseUser.getUid();
+       try {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.child("User").getChildren()){
+                    user = ds.getValue(User.class);
 
-        Log.d("USER", firebaseUser.getEmail());
-        txtUserName.setText(firebaseUser.getDisplayName());
-        txtUserName.setTextSize(24);
-        Glide.with(getActivity()).load(firebaseUser.getPhotoUrl() + "?type=large").into(imgUser);
+                   if (user.getId().equalsIgnoreCase(UID)){
+                        Log.d("ABCXXX",user.getPhotoURL());
+
+                        txtUserName.setText(user.getName());
+                        txtUserName.setTextSize(20);
+
+                        if (user.getPhotoURL().equalsIgnoreCase("no photo")){
+                            loadProfileDefault();
+                        }else {
+                            Glide.with(getActivity()).load(user.getPhotoURL() ).into(imgUser);
+
+                        }
+
+                        break;}
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 
     private void addEvents() {
+        imgEditName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentChangeName fragmentChangeName = new FragmentChangeName();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.begin_bottom_to_top,R.anim.exit_bottom_to_top
+                        ,R.anim.begin_top_to_bottom,R.anim.exit_top_to_bottom)
+                        .replace(R.id.frame_container, fragmentChangeName.newInstance(UID, txtUserName.getText().toString()))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +252,38 @@ imgUser.setOnClickListener(new View.OnClickListener() {
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                    if (uri != null){
+                        Utils.SetProgressDialogIndeterminate(getActivity(),"Uploading..");
+                        StorageReference storage = storageReference.child(System.currentTimeMillis()
+                        +"."+ getFileExtention(uri));
+                       storage.putFile(uri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                           @Override
+                           public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                               if (!task.isSuccessful()) {
+                                   throw task.getException();
+                               }
+                               return storage.getDownloadUrl();
+                           }
+                       }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                           @Override
+                           public void onComplete(@NonNull Task<Uri> task) {
+                               if (task.isSuccessful()) {
 
+                                   Uri downloadUri = task.getResult();
+                                  user.setPhotoURL(downloadUri.toString());
+                                  databaseReference.child("User").child(UID).setValue(user);
+                                  Utils.UnSetProgressDialogIndeterminate();
+                               } else {
+                                   Utils.UnSetProgressDialogIndeterminate();
+                                   Toast.makeText(getActivity(), "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                               }
+                           }
+                       });
+
+                    }else {
+                        Utils.UnSetProgressDialogIndeterminate();
+                        Toast.makeText(getActivity(),"Upload fail",Toast.LENGTH_LONG).show();
+                    }
                     // loading profile image from local cache
                     loadProfile(uri.toString());
                 } catch (IOException e) {
@@ -187,6 +292,13 @@ imgUser.setOnClickListener(new View.OnClickListener() {
             }
         }
     }
+    private String getFileExtention(Uri uri){
+        ContentResolver cr = getActivity().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
+
+
     private void showSettingsDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.dialog_permission_title));
@@ -207,6 +319,7 @@ imgUser.setOnClickListener(new View.OnClickListener() {
     }
 
     private void addControls(View view) {
+        imgEditName = view.findViewById(R.id.imgEditName);
         addPic = view.findViewById(R.id.addPic);
         imgUser = view.findViewById(R.id.imgUser);
         txtUserName = view.findViewById(R.id.txtUserName);
@@ -216,5 +329,6 @@ imgUser.setOnClickListener(new View.OnClickListener() {
         btnHotLine = view.findViewById(R.id.btnHotLine);
         btnInfo = view.findViewById(R.id.btnInfo);
         btnLogout = view.findViewById(R.id.btnLogout);
+        user = new User();
     }
 }
