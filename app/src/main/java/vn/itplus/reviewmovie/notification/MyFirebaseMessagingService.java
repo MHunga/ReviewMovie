@@ -27,14 +27,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
 
-        sendNotification(remoteMessage.getNotification().getBody(), remoteMessage.getNotification().getTitle());
+       // sendNotification(remoteMessage.getNotification().getBody(), remoteMessage.getNotification().getTitle());
 
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
-        OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(this);
-        Notification notification = new Notification();
-        notification.setTitle(remoteMessage.getNotification().getTitle());
-        notification.setBody(remoteMessage.getNotification().getBody());
-        dataBaseNotification.Add(notification);
+     //   Log.d(TAG, "From: " + remoteMessage.getFrom());
+
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
@@ -44,13 +40,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {sendNotification(remoteMessage.getNotification().getBody(), remoteMessage.getNotification().getTitle());
+        if (remoteMessage.getNotification() != null) {
+            sendNotification(remoteMessage.getNotification().getBody(), remoteMessage.getNotification().getTitle());
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
     }
 
     private void sendNotification(String messageBody, String title) {
+        OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(this);
+        Notification notification = new Notification();
+        notification.setTitle(title);
+        notification.setBody(messageBody);
+        dataBaseNotification.Add(notification);
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

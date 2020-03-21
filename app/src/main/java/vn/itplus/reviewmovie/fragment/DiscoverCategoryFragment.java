@@ -102,7 +102,7 @@ public class DiscoverCategoryFragment extends Fragment implements OnClickItem2 {
     }
 
     private void getSearch(String query,int page) {
-        MService mService = RetrofitClient.getInstance().getClientSearch().create(MService.class);
+        MService mService = RetrofitClient.getInstance().getClient().create(MService.class);
         Call<Search> call = mService.getSearch(query,page);
         call.enqueue(new Callback<Search>() {
             @Override
@@ -177,7 +177,7 @@ public class DiscoverCategoryFragment extends Fragment implements OnClickItem2 {
     }
 
     private void getDiscover(int page,int id) {
-        MService mService = RetrofitClient.getInstance().getClientDiscover().create(MService.class);
+        MService mService = RetrofitClient.getInstance().getClient().create(MService.class);
         Call<Discover> call = mService.getDiscover(page,id);
         call.enqueue(new Callback<Discover>() {
             @Override

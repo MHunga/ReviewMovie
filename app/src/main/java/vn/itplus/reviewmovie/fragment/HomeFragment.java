@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment implements OnClickItem {
 
     private void getTrendingMovies() {
 
-        MService mService = RetrofitClient.getInstance().getClientTrending().create(MService.class);
+        MService mService = RetrofitClient.getInstance().getClient().create(MService.class);
         Call<Trending> call = mService.getTrending().clone();
         Call<NowPlaying> call1 = mService.getNowPlaying().clone();
         Call<UpComing> call2 = mService.getUpComing().clone();

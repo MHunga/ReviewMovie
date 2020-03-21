@@ -82,19 +82,10 @@
             android:text="Đánh giá"
             android:textColor="#FFF" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerComment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp" />
 
          <include layout="@layout/comment"/>
-        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

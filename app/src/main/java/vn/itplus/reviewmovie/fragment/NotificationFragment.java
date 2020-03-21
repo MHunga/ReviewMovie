@@ -48,12 +48,11 @@ public class NotificationFragment extends Fragment {
 
         OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(getActivity());
         notifications = dataBaseNotification.getAll();
-      // Log.d("DATANOTI",notifications.get(0).getBody());
 
         if (notifications.size()>0){
         notificationAdapter = new NotificationAdapter(notifications,getActivity());
-        recyclerNotifications.setHasFixedSize(true);
-        recyclerNotifications.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
+         recyclerNotifications.setHasFixedSize(true);
+        recyclerNotifications.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,true));
         recyclerNotifications.setItemAnimator(new DefaultItemAnimator());
         recyclerNotifications.setAdapter(notificationAdapter);
         notificationAdapter.notifyDataSetChanged();

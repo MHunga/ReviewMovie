@@ -82,7 +82,7 @@ ImageButton btnSearch;
     }
 
     private void getGenresMovie() {
-        MService mService = RetrofitClient.getInstance().getClientGenre().create(MService.class);
+        MService mService = RetrofitClient.getInstance().getClient().create(MService.class);
         Call<GenreCategory> call = mService.getGenre();
         call.enqueue(new Callback<GenreCategory>() {
             @Override

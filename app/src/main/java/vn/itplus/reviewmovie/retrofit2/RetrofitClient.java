@@ -31,138 +31,15 @@ public class RetrofitClient {
         return retrofitClient;
     }
 
-    public Retrofit getClientDetails(){
-        return getClientDetails(null);
-    }
-
-
-    public Retrofit getClientTrending(){
-        return getClientTrending(null);
-    }
-    public Retrofit getClilentUpcoming(){return getClilentUpcoming(null);}
-    public Retrofit getClientDiscover(){
-        return getClientDiscover(null);
-    }
-    public Retrofit getClientSearch(){
-        return getClientSearch(null);
-    }
-
-    private Retrofit getClientSearch(Context context) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60, TimeUnit.SECONDS);
-        client.connectTimeout(60, TimeUnit.SECONDS);
-        client.addInterceptor(interceptor);
-        client.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-
-                return chain.proceed(request);
-            }
-        });
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        return retrofit;
-
-    }
-
-    private Retrofit getClientDiscover(Context context) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60, TimeUnit.SECONDS);
-        client.connectTimeout(60, TimeUnit.SECONDS);
-        client.addInterceptor(interceptor);
-        client.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-
-                return chain.proceed(request);
-            }
-        });
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        return retrofit;
-    }
-
-    public Retrofit getClientGenre(){
-        return getClientGenre(null);
-    }
-
-    private Retrofit getClientGenre(Context context) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60, TimeUnit.SECONDS);
-        client.connectTimeout(60, TimeUnit.SECONDS);
-        client.addInterceptor(interceptor);
-        client.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-
-                return chain.proceed(request);
-            }
-        });
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        return retrofit;
-    }
-
-    private Retrofit getClilentUpcoming(Context context) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60, TimeUnit.SECONDS);
-        client.connectTimeout(60, TimeUnit.SECONDS);
-        client.addInterceptor(interceptor);
-        client.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-
-                return chain.proceed(request);
-            }
-        });
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        return retrofit;
+    public Retrofit getClient(){
+        return getClient(null);
     }
 
 
 
-    private Retrofit getClientDetails(Context context) {
+
+
+    private Retrofit getClient(Context context) {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -190,31 +67,5 @@ public class RetrofitClient {
         return retrofit;
     }
 
-    private Retrofit getClientTrending(Context context) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder client = new OkHttpClient.Builder();
-        client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60, TimeUnit.SECONDS);
-        client.connectTimeout(60, TimeUnit.SECONDS);
-        client.addInterceptor(interceptor);
-        client.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-
-                return chain.proceed(request);
-            }
-        });
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL_TRENDING)
-                .client(client.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        return retrofit;
-    }
 
 }
