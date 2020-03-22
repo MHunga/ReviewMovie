@@ -10,7 +10,15 @@
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+            app:navGraph="@navigation/navigation"/>
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
@@ -18,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#F3F1F1"
-
         android:foreground="?attr/selectableItemBackground"
         app:itemIconTint="@color/com_facebook_blue"
         app:itemTextColor="@color/com_facebook_blue"
