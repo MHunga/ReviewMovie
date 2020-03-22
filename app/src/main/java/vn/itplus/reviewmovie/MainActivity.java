@@ -37,13 +37,52 @@ public class MainActivity extends AppCompatActivity  {
         getWindow().setFlags(WindowManager.LayoutParams.ALPHA_CHANGED,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         BottomNavigationView navigationView = findViewById(R.id.navigation);
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+     //   NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+     //   NavigationUI.setupWithNavController(navigationView, navController);
+
+
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) navigationView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationBehavior() );
     }
 
+    BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            Fragment fragment;
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_home:
 
+                    fragment = new HomeFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_search:
+
+                    fragment = new SearchFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_notification:
+
+                    fragment= new NotificationFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_profile:
+
+                    fragment = new ProfileFragment();
+                    loadFragment(fragment);
+                    return true;
+            }
+            return false;
+        }
+    };
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
     @Override
     public void onBackPressed() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);

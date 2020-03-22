@@ -14,11 +14,7 @@
         android:id="@+id/navigation_search"
         android:name="vn.itplus.reviewmovie.fragment.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_searchFragment_to_discoverCategoryFragment"
-            app:destination="@id/discoverCategoryFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/navigation_notification"
         android:name="vn.itplus.reviewmovie.fragment.NotificationFragment"
@@ -34,4 +30,9 @@
         android:name="vn.itplus.reviewmovie.fragment.DiscoverCategoryFragment"
         android:label="fragment_search_by_category"
         tools:layout="@layout/fragment_search_by_category" />
+    <fragment
+        android:id="@+id/fragmentChangeName"
+        android:name="vn.itplus.reviewmovie.fragment.FragmentChangeName"
+        android:label="diaglog_edit_name"
+        tools:layout="@layout/diaglog_edit_name" />
 </navigation>

@@ -67,8 +67,7 @@ public class ProfileFragment extends Fragment {
 
     CircularImageView imgUser,addPic;
     ImageButton imgEditName;
-    TextView txtUserName,txtOldName;
-    EditText txtNewName;
+    TextView txtUserName;
     Button btnSeen,btnLiked,btnLocation,btnHotLine,btnInfo,btnLogout, btnExitDiaLog, btnChangeName ;
 
    static User user;
