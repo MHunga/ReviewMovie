@@ -8,6 +8,7 @@
     <color name="progressDialogPositiveTextColor">#5b5b5b</color>
 
     <color name="bgBottomNavigation">#17A0C2</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="placeholder_bg">#dddddd</color>
     <color name="item_name">#0c0c0c</color>

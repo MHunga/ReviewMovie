@@ -22,18 +22,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.47" />
 
-        <TextView
-            android:id="@+id/txtTitleDetail"
-            android:layout_width="206dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="4dp"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.226"
-            app:layout_constraintStart_toEndOf="@+id/imgposter"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txtTitleDetail"
+        android:layout_width="165dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toEndOf="@+id/imgposter"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <com.timqi.sectorprogressview.ColorfulRingProgressView
             android:id="@+id/vote_average"
@@ -112,18 +112,18 @@
             app:layout_constraintStart_toEndOf="@+id/imgposter"
             app:layout_constraintTop_toBottomOf="@+id/vote_average" />
 
-        <TextView
-            android:id="@+id/txtGenre"
-            android:layout_width="174dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:text="TextView"
-            android:textColor="#FFF"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toTopOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/txtGenre"
+        android:layout_width="166dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textColor="#FFF"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView7"

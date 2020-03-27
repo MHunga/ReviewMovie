@@ -14,6 +14,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 import vn.itplus.reviewmovie.R;
@@ -46,18 +52,34 @@ public class NotificationFragment extends Fragment {
 
     private void getNotifications() {
 
-        OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(getActivity());
-        notifications = dataBaseNotification.getAll();
+     //   OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(getActivity());
+      //  notifications = dataBaseNotification.getAll();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Notitfication");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                notifications.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    Notification notification = ds.getValue(Notification.class);
+                    notifications.add(notification);
+                }
+                if (notifications.size()>0){
+                    notificationAdapter = new NotificationAdapter(notifications,getActivity());
+                    recyclerNotifications.setHasFixedSize(true);
+                    recyclerNotifications.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,true));
+                    recyclerNotifications.setItemAnimator(new DefaultItemAnimator());
+                    recyclerNotifications.setAdapter(notificationAdapter);
+                    notificationAdapter.notifyDataSetChanged();
+                    checkNullNotification.setVisibility(View.GONE); }
+            }
 
-        if (notifications.size()>0){
-        notificationAdapter = new NotificationAdapter(notifications,getActivity());
-         recyclerNotifications.setHasFixedSize(true);
-        recyclerNotifications.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,true));
-        recyclerNotifications.setItemAnimator(new DefaultItemAnimator());
-        recyclerNotifications.setAdapter(notificationAdapter);
-        notificationAdapter.notifyDataSetChanged();
-            checkNullNotification.setVisibility(View.GONE);
-    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private void addControls(View view) {

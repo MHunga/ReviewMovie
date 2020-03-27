@@ -13,6 +13,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -48,11 +52,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String messageBody, String title) {
-        OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(this);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+      //  OpenHelperDataBaseNotification dataBaseNotification = new OpenHelperDataBaseNotification(this);
         Notification notification = new Notification();
+        notification.setId(firebaseUser.getUid());
         notification.setTitle(title);
         notification.setBody(messageBody);
-        dataBaseNotification.Add(notification);
+       // dataBaseNotification.Add(notification);
+
+
+
+        databaseReference.child("Notitfication").push().setValue(notification);
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

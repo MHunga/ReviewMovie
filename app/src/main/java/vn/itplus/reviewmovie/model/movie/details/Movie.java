@@ -17,7 +17,7 @@ public class Movie {
     private BelongsToCollection belongsToCollection;
     @SerializedName("budget")
     @Expose
-    private Integer budget;
+    private float budget;
     @SerializedName("genres")
     @Expose
     private List<Genre> genres = null;
@@ -56,7 +56,7 @@ public class Movie {
     private String releaseDate;
     @SerializedName("revenue")
     @Expose
-    private Integer revenue;
+    private float revenue;
     @SerializedName("runtime")
     @Expose
     private Integer runtime;
@@ -106,11 +106,11 @@ public class Movie {
         this.belongsToCollection = belongsToCollection;
     }
 
-    public Integer getBudget() {
+    public float getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(float budget) {
         this.budget = budget;
     }
 
@@ -210,11 +210,11 @@ public class Movie {
         this.releaseDate = releaseDate;
     }
 
-    public Integer getRevenue() {
+    public float getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(Integer revenue) {
+    public void setRevenue(float revenue) {
         this.revenue = revenue;
     }
 

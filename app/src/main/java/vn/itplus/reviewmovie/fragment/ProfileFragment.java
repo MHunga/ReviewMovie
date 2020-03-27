@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
     CircularImageView imgUser,addPic;
     ImageButton imgEditName;
     TextView txtUserName;
-    Button btnSeen,btnLiked,btnLocation,btnHotLine,btnInfo,btnLogout, btnExitDiaLog, btnChangeName ;
+    Button btnSeen,btnLocation,btnHotLine,btnInfo,btnLogout, btnExitDiaLog, btnChangeName ;
 
    static User user;
     DatabaseReference databaseReference;
@@ -323,7 +323,6 @@ imgUser.setOnClickListener(new View.OnClickListener() {
         imgUser = view.findViewById(R.id.imgUser);
         txtUserName = view.findViewById(R.id.txtUserName);
         btnSeen = view.findViewById(R.id.btnSeen);
-        btnLiked = view.findViewById(R.id.btnLiked);
         btnLocation = view.findViewById(R.id.btnLocation);
         btnHotLine = view.findViewById(R.id.btnHotLine);
         btnInfo = view.findViewById(R.id.btnInfo);

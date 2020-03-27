@@ -1,24 +1,24 @@
 package vn.itplus.reviewmovie.model.notification;
 
 public class Notification  {
-    private int id;
+    private String id;
     private String title;
     private String body;
 
     public Notification() {
     }
 
-    public Notification(int id, String title, String body) {
+    public Notification(String id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String  id) {
         this.id = id;
     }
 

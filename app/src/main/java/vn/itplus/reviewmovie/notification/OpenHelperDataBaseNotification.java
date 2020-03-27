@@ -59,7 +59,7 @@ public class OpenHelperDataBaseNotification extends SQLiteOpenHelper {
             int id = cursor.getInt(0);
             String title = cursor.getString(1);
             String body = cursor.getString(2);
-            list.add(new Notification(id,title,body));
+           // list.add(new Notification(id,title,body));
         }
         return list;
     }

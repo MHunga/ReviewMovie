@@ -164,7 +164,7 @@ public class DetailsMovie extends YouTubeBaseActivity {
                     }
                         commentAdapter = new CommentAdapter(list, getApplicationContext());
                         recyclerComment.setHasFixedSize(false);
-                        recyclerComment.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1, RecyclerView.VERTICAL, false));
+                        recyclerComment.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1, RecyclerView.VERTICAL, true));
                         recyclerComment.setItemAnimator(new DefaultItemAnimator());
                         recyclerComment.setAdapter(commentAdapter);
                         commentAdapter.notifyDataSetChanged();
@@ -229,7 +229,7 @@ public class DetailsMovie extends YouTubeBaseActivity {
                                 dem = i;
                             }
                         }
-                        if (check = true && translation.getTranslations().get(dem).getData().getTitle() != "") {
+                        if (check = true && !translation.getTranslations().get(dem).getData().getTitle().isEmpty()) {
                             txtTitleDetail.setText(translation.getTranslations().get(dem).getData().getTitle());
 
                             txtOverview.setText(translation.getTranslations().get(dem).getData().getOverview());
@@ -259,8 +259,8 @@ public class DetailsMovie extends YouTubeBaseActivity {
                     Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getBackdropPath()).into(imgbackdrop);
                     Picasso.get().load("https://image.tmdb.org/t/p/original" + movie.getPosterPath()).into(imgposter);
                     txtdate.setText("(" + movie.getReleaseDate() + ")");
-                    txtBudget.setText(movie.getBudget() + "$");
-                    txtRevenue.setText(movie.getRevenue() + "$");
+                    txtBudget.setText(String.format("%-1s%,.2f","$",movie.getBudget()));
+                    txtRevenue.setText(String.format("%-1s%,.2f","$",movie.getRevenue()));
                     if (movie.getGenres().size() > 0) {
                         String s = movie.getGenres().get(0).getName() + "";
                         String s1 = "";
