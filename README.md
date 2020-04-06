@@ -83,7 +83,7 @@ private void register(final String email, final String password, final String na
    ## * Tìm kiếm
    ![Image description](https://i.imgur.com/YQugUgA.png?1)
    * tìm kiếm theo danh mục hoặc tìm kiếm theo từ khóa
-   ![Image description](https://i.imgur.com/PISd5eG.png?1)
+   * ![Image description](https://i.imgur.com/PISd5eG.png?1)
    ## * Thông báo
    ![Image description](https://i.imgur.com/JzEQOpu.png?1)
    * Hiển thị thông báo qua cơ chế **Firebase Cloud Messaging**
