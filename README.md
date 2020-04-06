@@ -43,5 +43,52 @@ private void register(final String email, final String password, final String na
             Log.e(TAG, ex.toString());
         }
     }
+  ```
+  ## *Đăng nhập
+  ![Image description](https://i.imgur.com/SDWJefb.png?1)
+  * Có thể đăng nhập bằng Facebook, Google, Phone
+ ```java
+ private void logInWithEmail(String email, String password) {
+        Utils.SetProgressDialogIndeterminate(this, "Đăng nhập");
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            if (firebaseUser.isEmailVerified()) {
+                                Utils.UnSetProgressDialogIndeterminate();
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            } else {
+                                txtFailLogin.setText("Tài khoản của bạn chưa được xác minh");
+
+                                Utils.UnSetProgressDialogIndeterminate();
+                                txtResendVerify.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                });
+    }
+   ```
+   ## * Home
+   ![Image description](https://i.imgur.com/bVGVUq2.png?1)
+   * Hiển thị các mục ***Trending, Phim đang chiếu, Phim sắp công chiếu***
+   * Sử dụng **Retrofit2** đọc dữ liệu Api
+   * [Nguồn api](https://www.themoviedb.org/)
+   ## * Thông tin chi tiết
+   ![Image description](https://i.imgur.com/8uMNuE0.png?1)      ![Image description](https://i.imgur.com/03J0aA6.png?1)
+   * Hiển thị thông tin chi tiết bộ phim và đánh giá của người dùng
+   ## * Tìm kiếm
+   ![Image description](https://i.imgur.com/YQugUgA.png?1)
+   * tìm kiếm theo danh mục hoặc tìm kiếm theo từ khóa
+   ![Image description](https://i.imgur.com/PISd5eG.png?1)
+   ## * Thông báo
+   ![Image description](https://i.imgur.com/JzEQOpu.png?1)
+   * Hiển thị thông báo qua cơ chế **Firebase Cloud Messaging**
+   ## * Profile
+   ![Image description](https://i.imgur.com/ZYMWEs7.png?1)
+   ![Image description](https://i.imgur.com/VCJJ0bK.png?1)
    
     
