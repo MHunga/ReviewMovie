@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity  {
         int seletedItemId = bottomNavigationView.getSelectedItemId();
         if (R.id.navigation_home != seletedItemId) {
             setHomeItem(MainActivity.this);
+            Fragment fragment = new HomeFragment();
+            loadFragment(fragment);
         } else {
             if (doublePressToExit) {
                 finish();

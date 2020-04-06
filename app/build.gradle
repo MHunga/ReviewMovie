@@ -38,26 +38,26 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 //Firebase
-    implementation 'com.google.firebase:firebase-analytics:17.2.3'
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
-    implementation 'com.google.firebase:firebase-messaging:20.1.2'
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
 //Country code
     implementation 'com.github.joielechong:countrycodepicker:2.4.1'
 //Facebooklogin
-    implementation 'com.facebook.android:facebook-android-sdk:6.2.0'
+    implementation 'com.facebook.android:facebook-android-sdk:6.3.0'
     implementation 'androidx.navigation:navigation-fragment:2.2.1'
     implementation 'androidx.navigation:navigation-ui:2.2.1'
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.timqi.sectorprogressview:library:2.0.1'
 
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
 //youtube
     implementation 'pub.devrel:easypermissions:0.3.0'
     implementation('com.google.api-client:google-api-client-android:1.30.9') {
