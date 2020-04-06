@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity  {
             setHomeItem(MainActivity.this);
         } else {
             if (doublePressToExit) {
-                super.onBackPressed();
+                finish();
                 return;
             }
             this.doublePressToExit = true;
