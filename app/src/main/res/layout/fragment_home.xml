@@ -23,9 +23,9 @@
             android:textSize="40sp" />
         <include layout="@layout/trending" />
 
-        <include layout="@layout/upcoming"/>
-       <include layout="@layout/nowplaying"/>
 
+       <include layout="@layout/nowplaying"/>
+        <include layout="@layout/upcoming"/>
 
         <ProgressBar
             android:id="@+id/progressBarHome"

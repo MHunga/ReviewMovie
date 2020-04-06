@@ -86,17 +86,7 @@
                 />
 
 
-            <Button
-                android:id="@+id/btnLocation"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/cardview_light_background"
-                android:text="     Địa chỉ"
-                android:textAllCaps="false"
-                android:gravity="left|center"
-                android:drawableLeft="@drawable/ic_location_on_black_24dp"
-                />
+
             <Button
                 android:id="@+id/btnHotLine"
                 android:layout_marginTop="5dp"

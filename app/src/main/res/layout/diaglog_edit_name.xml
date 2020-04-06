@@ -26,6 +26,7 @@
         android:textSize="20sp"
         android:inputType="textPersonName"
         android:hint="@string/new_name"/>
+
    <LinearLayout
        android:gravity="center"
        android:layout_width="match_parent"
