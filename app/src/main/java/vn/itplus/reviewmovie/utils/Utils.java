@@ -15,7 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import vn.itplus.reviewmovie.OpenHelperDataBase.OpenHelperDatabaseSeen;
 import vn.itplus.reviewmovie.R;
+import vn.itplus.reviewmovie.model.movie.seen.Seen;
 
 public class Utils {
 
@@ -132,5 +134,17 @@ public class Utils {
 
         sb.append(" ago");
         return sb.toString();
+    }
+
+    public static void addSeenDatabase(Context context, int id, String name,String photoUrl,String date, float userScore){
+        OpenHelperDatabaseSeen openHelperDatabaseSeen = new OpenHelperDatabaseSeen(context);
+        Seen seen = new Seen();
+        seen.setId(id);
+        seen.setName(name);
+        seen.setPhotoUrl(photoUrl);
+        seen.setRelease_date(date);
+        seen.setUserScore(userScore);
+        openHelperDatabaseSeen.Add(seen);
+
     }
 }

@@ -39,6 +39,7 @@ import vn.itplus.reviewmovie.model.movie.upcoming.UpComing;
 import vn.itplus.reviewmovie.onclickitem.OnClickItem;
 import vn.itplus.reviewmovie.retrofit2.MService;
 import vn.itplus.reviewmovie.retrofit2.RetrofitClient;
+import vn.itplus.reviewmovie.utils.Utils;
 
 public class HomeFragment extends Fragment implements OnClickItem {
     ProgressBar progressBarHome;
@@ -179,6 +180,9 @@ public class HomeFragment extends Fragment implements OnClickItem {
     @Override
     public void onClickTrending(int position) {
 
+        Utils.addSeenDatabase(getActivity(),trending.getResults().get(position).getId(),
+                trending.getResults().get(position).getTitle(),trending.getResults().get(position).getPosterPath(),
+                trending.getResults().get(position).getReleaseDate(),trending.getResults().get(position).getVoteCount());
         Intent intent = new Intent(getActivity().getBaseContext(), DetailsMovie.class);
         Log.d("TAG: ID", String.valueOf(trending.getResults().get(position).getId()));
         intent.putExtra("id", String.valueOf(trending.getResults().get(position).getId()).trim());
@@ -189,6 +193,9 @@ public class HomeFragment extends Fragment implements OnClickItem {
 
     @Override
     public void onClickNowplaying(int position) {
+        Utils.addSeenDatabase(getActivity(),nowPlaying.getResultNowPlayings().get(position).getId(),
+                nowPlaying.getResultNowPlayings().get(position).getTitle(),nowPlaying.getResultNowPlayings().get(position).getPosterPath(),
+                nowPlaying.getResultNowPlayings().get(position).getReleaseDate(),nowPlaying.getResultNowPlayings().get(position).getVoteCount());
         Intent intent = new Intent(getActivity().getBaseContext(), DetailsMovie.class);
         intent.putExtra("id", String.valueOf(nowPlaying.getResultNowPlayings().get(position).getId()));
         intent.putExtra("title", nowPlaying.getResultNowPlayings().get(position).getTitle());
@@ -198,6 +205,9 @@ public class HomeFragment extends Fragment implements OnClickItem {
 
     @Override
     public void onClickUpcoming(int position) {
+        Utils.addSeenDatabase(getActivity(),upComing.getResultUpcomings().get(position).getId(),
+                upComing.getResultUpcomings().get(position).getTitle(),upComing.getResultUpcomings().get(position).getPosterPath(),
+                upComing.getResultUpcomings().get(position).getReleaseDate(),upComing.getResultUpcomings().get(position).getVoteCount());
         Intent intent = new Intent(getActivity().getBaseContext(), DetailsMovie.class);
         intent.putExtra("id", String.valueOf(upComing.getResultUpcomings().get(position).getId()));
         intent.putExtra("title", upComing.getResultUpcomings().get(position).getTitle());

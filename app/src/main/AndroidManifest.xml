@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionbar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SeenMovieActivity"></activity>
         <activity
             android:name=".ShimmerComment"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
@@ -46,7 +47,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />

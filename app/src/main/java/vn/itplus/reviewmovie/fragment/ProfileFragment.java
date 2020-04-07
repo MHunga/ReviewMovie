@@ -58,6 +58,7 @@ import java.util.List;
 
 import vn.itplus.reviewmovie.LoginActivity;
 import vn.itplus.reviewmovie.R;
+import vn.itplus.reviewmovie.SeenMovieActivity;
 import vn.itplus.reviewmovie.model.comment.Comment;
 import vn.itplus.reviewmovie.model.user.User;
 import vn.itplus.reviewmovie.utils.ImagePickerActivity;
@@ -148,6 +149,13 @@ public class ProfileFragment extends Fragment {
     }
 
     private void addEvents() {
+        btnSeen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SeenMovieActivity.class) ;
+                startActivity(intent);
+            }
+        });
         imgEditName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
