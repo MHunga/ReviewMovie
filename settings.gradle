@@ -1,2 +1,2 @@
-include ':app', ':YouTubeAndroidPlayerApi', ':scalinglib', ':scalinglib'
+include ':app', ':scalinglib'
 rootProject.name='ReviewMovie'
