@@ -63,7 +63,7 @@ public class DetailsMovie extends YouTubeBaseActivity {
     TextView txtTitleDetail, txtvote_average, txtdate, txtGenre, txtBudget, txtRevenue, txtOverview, checkNullComment;
     EditText txtYourComment;
     ImageButton btnSendComment;
-    Button btnMoreComments;
+    Button btnMoreComments, btnDatVe;
     ColorfulRingProgressView vote_average;
     Translation translation;
     CastAdapter castAdapter;
@@ -74,7 +74,7 @@ public class DetailsMovie extends YouTubeBaseActivity {
     ArrayList<Cast> castArrayList;
     boolean check = false;
     int dem;
-    String id, title, overview;
+    String id, title, overview , datVe;
     YouTubePlayerView youTubePlayerView;
     CommentAdapter commentAdapter;
     ArrayList<Comment> comments;
@@ -92,6 +92,7 @@ public class DetailsMovie extends YouTubeBaseActivity {
         setContentView(R.layout.details_movie);
 
         Intent intent = getIntent();
+        datVe = intent.getStringExtra("datVe");
         id = intent.getStringExtra("id");
         title = intent.getStringExtra("title");
         overview = intent.getStringExtra("overview");
@@ -99,6 +100,11 @@ public class DetailsMovie extends YouTubeBaseActivity {
         addControls();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (datVe.equalsIgnoreCase("yes")){
+            btnDatVe.setVisibility(View.VISIBLE);
+        }else {
+            btnDatVe.setVisibility(View.GONE);
+        }
         getDetails(id);
         getComments(id);
         getInfomationUser();
@@ -352,6 +358,7 @@ public class DetailsMovie extends YouTubeBaseActivity {
 
 
         private void addControls () {
+            btnDatVe = findViewById(R.id.btnDatVe);
             checkNullComment = findViewById(R.id.checkNullComment);
             btnMoreComments = findViewById(R.id.btnMoreComments);
             btnSendComment = findViewById(R.id.btnSendComment);

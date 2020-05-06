@@ -20,7 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionbar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SeenMovieActivity"></activity>
+        <activity android:name=".BookingSeats"></activity>
+        <activity
+            android:name=".DetailsTicketActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".TicketBookingActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".SeenMovieActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".ShimmerComment"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />

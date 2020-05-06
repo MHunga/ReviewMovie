@@ -1,64 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_app">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/background_app"
-            app:titleEnabled="false">
-
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imgbackdrop"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-
-<vn.itplus.scalinglib.ScalingLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:radiusFactor="1"
-   android:layout_marginTop="50dp"
-    android:clickable="true"
-    android:layout_gravity="center_horizontal"
-    android:stateListAnimator="@animator/sl_state_animator"
-    app:layout_behavior="vn.itplus.scalinglib.ScalingLayoutBehavior">
       <include layout="@layout/details_main"/>
-    </vn.itplus.scalinglib.ScalingLayout>
-
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="32dp"
-    android:clipToPadding="false"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 <LinearLayout
     android:orientation="vertical"
-    android:layout_marginTop="200dp"
-    android:background="@drawable/background_body_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-        <TextView
 
+    <Button
+        android:id="@+id/btnDatVe"
+        android:layout_width="191dp"
+        android:layout_height="31dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/padding_10"
+        android:background="#56E65D"
+        android:text="Đặt vé"
+        android:textAllCaps="false"
+        android:visibility="visible" />
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:text="Diễn viên nổi bật: "
             android:textColor="#fff"
             android:textSize="16sp" />
@@ -96,6 +74,7 @@
 
         <com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/youtube_view"
+            android:layout_margin="@dimen/padding_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -111,7 +90,7 @@
 
          <include layout="@layout/comment"/>
 </LinearLayout>
-</androidx.core.widget.NestedScrollView>
 
+</LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</ScrollView>

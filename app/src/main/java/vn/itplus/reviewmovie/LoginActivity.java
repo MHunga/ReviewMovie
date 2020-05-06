@@ -114,26 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
         addEvents();
     }
-    public void getIdMovies() {
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.child("idHotMovie").getChildren()){
-                    Log.d("TAG",ds.getValue().toString());
-                    idHotMovies.add(ds.getValue().toString());
 
-                }
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                finish();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
     private void addEvents() {
         txtCreatAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -344,16 +325,16 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            if (firebaseUser.isEmailVerified()) {
+
                                 Utils.UnSetProgressDialogIndeterminate();
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
-                            } else {
+                           /*  else {
                                 txtFailLogin.setText("Tài khoản của bạn chưa được xác minh");
 
                                 Utils.UnSetProgressDialogIndeterminate();
                                 txtResendVerify.setVisibility(View.VISIBLE);
-                            }
+                            }*/
                         }
                     }
                 });
@@ -413,7 +394,6 @@ public class LoginActivity extends AppCompatActivity {
             valid = false;
         } else {
             txtLoginEmail.setError(null);
-
         }
 
         if (password.isEmpty() || password.length() < 6 || password.length() > 12) {
@@ -423,8 +403,6 @@ public class LoginActivity extends AppCompatActivity {
             txtLoginPassword.setError(null);
 
         }
-
-
         return valid;
     }
 

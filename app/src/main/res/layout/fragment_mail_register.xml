@@ -128,7 +128,7 @@
                 android:src="@drawable/icon_visibility_off"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.957"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

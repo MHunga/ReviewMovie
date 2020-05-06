@@ -45,10 +45,11 @@ firebaseUser = firebaseAuth.getCurrentUser();
     }
 
     public void OnVerified_Click(View view) {
-        User user = new User(firebaseUser.getUid(),name,email,password,"","","","");
+        User user = new User(firebaseUser.getUid(),name,email,password,"","","","no photo");
         FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid()).setValue(user);
 
-        startActivity(new Intent(this,LoginActivity.class));
+       // startActivity(new Intent(this,LoginActivity.class));
+        finish();
     }
 
     public void OnResendEmail_Click(View view) {

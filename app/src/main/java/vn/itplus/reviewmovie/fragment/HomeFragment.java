@@ -185,6 +185,7 @@ public class HomeFragment extends Fragment implements OnClickItem {
                 trending.getResults().get(position).getReleaseDate(),trending.getResults().get(position).getVoteCount());
         Intent intent = new Intent(getActivity().getBaseContext(), DetailsMovie.class);
         Log.d("TAG: ID", String.valueOf(trending.getResults().get(position).getId()));
+        intent.putExtra("datVe", "no");
         intent.putExtra("id", String.valueOf(trending.getResults().get(position).getId()).trim());
         intent.putExtra("title", trending.getResults().get(position).getTitle());
         intent.putExtra("overview", trending.getResults().get(position).getOverview());
@@ -197,6 +198,7 @@ public class HomeFragment extends Fragment implements OnClickItem {
                 nowPlaying.getResultNowPlayings().get(position).getTitle(),nowPlaying.getResultNowPlayings().get(position).getPosterPath(),
                 nowPlaying.getResultNowPlayings().get(position).getReleaseDate(),nowPlaying.getResultNowPlayings().get(position).getVoteCount());
         Intent intent = new Intent(getActivity().getBaseContext(), DetailsMovie.class);
+        intent.putExtra("datVe", "yes");
         intent.putExtra("id", String.valueOf(nowPlaying.getResultNowPlayings().get(position).getId()));
         intent.putExtra("title", nowPlaying.getResultNowPlayings().get(position).getTitle());
         intent.putExtra("overview", nowPlaying.getResultNowPlayings().get(position).getOverview());
@@ -209,6 +211,7 @@ public class HomeFragment extends Fragment implements OnClickItem {
                 upComing.getResultUpcomings().get(position).getTitle(),upComing.getResultUpcomings().get(position).getPosterPath(),
                 upComing.getResultUpcomings().get(position).getReleaseDate(),upComing.getResultUpcomings().get(position).getVoteCount());
         Intent intent = new Intent(getActivity().getBaseContext(), DetailsMovie.class);
+        intent.putExtra("datVe", "no");
         intent.putExtra("id", String.valueOf(upComing.getResultUpcomings().get(position).getId()));
         intent.putExtra("title", upComing.getResultUpcomings().get(position).getTitle());
         intent.putExtra("overview", upComing.getResultUpcomings().get(position).getOverview());
@@ -220,4 +223,8 @@ public class HomeFragment extends Fragment implements OnClickItem {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

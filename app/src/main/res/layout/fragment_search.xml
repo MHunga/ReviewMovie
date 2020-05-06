@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_app">
+    android:background="@color/background_app"
+    android:clickable="true">
 
    <TextView
        android:layout_width="wrap_content"
@@ -19,7 +20,7 @@
    <ProgressBar
        android:id="@+id/progressCategory"
        android:layout_gravity="center"
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"/>
    <TextView
        android:layout_marginTop="20dp"
