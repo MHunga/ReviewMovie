@@ -324,19 +324,19 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user.isEmailVerified())
                                 Utils.UnSetProgressDialogIndeterminate();
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
-                           /*  else {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                        }else {
                                 txtFailLogin.setText("Tài khoản của bạn chưa được xác minh");
 
                                 Utils.UnSetProgressDialogIndeterminate();
                                 txtResendVerify.setVisibility(View.VISIBLE);
-                            }*/
+                            }
                         }
-                    }
+
                 });
     }
 

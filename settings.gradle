@@ -1,2 +1,2 @@
-include ':app', ':scalinglib'
+include ':app'
 rootProject.name='ReviewMovie'
